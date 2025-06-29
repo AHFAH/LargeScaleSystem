@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import spring.board.comment.entity.Comment;
 import spring.board.comment.repository.CommentRepository;
 import spring.board.comment.service.request.CommentCreateRequest;
+import spring.board.comment.service.response.CommentPageResponse;
 import spring.board.comment.service.response.CommentResponse;
 
 import java.util.List;
@@ -79,4 +80,23 @@ public class CommentService {
         }
     }
 
+    public CommentPageResponse readAll(Long articleId, Long page, Long pageSize) {
+        return CommentPageResponse.of(
+                commentRepository.findAll(articleId, (page - 1) * pageSize, pageSize).stream()
+                        .map(CommentResponse::from)
+                        .toList(),
+                commentRepository.count(articleId, PageLimitCalculator.calculatePageLimit(page, pageSize, 10L))
+        );
+    }
+
+
+    public List<CommentResponse> readAll(Long articleId, Long lastParentCommentId, Long lastCommentId, Long limit) {
+        List<Comment> comments = lastParentCommentId == null || lastCommentId == null ?
+                commentRepository.findAllInfiniteScroll(articleId, limit) :
+                commentRepository.findAllInfiniteScroll(articleId, lastParentCommentId, lastCommentId, limit);
+
+        return comments.stream()
+                .map(CommentResponse::from)
+                .toList();
+    }
 }
