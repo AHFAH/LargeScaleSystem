@@ -31,10 +31,12 @@ public class CommentPath {
         return commentPath;
     }
 
+    // 깊이가 최대 깊이를 넘으면 overflow
     private static boolean isDepthOverflowed(String path) {
         return calDepth(path) > MAX_DEPTH;
     }
 
+    // 각 depth마다 다섯개의 문자열, 문자열 길이 / 5
     private static int calDepth(String path) {
         return path.length() / DEPTH_CHUNK_SIZE;
     }
@@ -51,12 +53,14 @@ public class CommentPath {
         return path.substring(0, path.length() - DEPTH_CHUNK_SIZE);
     }
 
+
+
     public CommentPath createChildCommentPath(String descendantsTopPath) {
-        if (descendantsTopPath == null) {
+        if (descendantsTopPath == null) { // 하위 댓글이 하나도 없음, 현재 댓글 경로 상속 + min chunk
             return CommentPath.create(path + MIN_CHUNK);
         }
         String childrenTopPath = findChildrenTopPath(descendantsTopPath);
-        return CommentPath.create(increase(childrenTopPath));
+        return CommentPath.create(increase(childrenTopPath)); // childrenTopPath + 1
     }
 
     private String findChildrenTopPath(String descendantsTopPath) {
@@ -65,6 +69,8 @@ public class CommentPath {
 
     private String increase(String path) {
         String lastChunk = path.substring(path.length() - DEPTH_CHUNK_SIZE);
+
+        // overflow인지 확인
         if (isChunkOverflowed(lastChunk)) {
             throw new IllegalStateException("chunk overflowed");
         }
@@ -76,7 +82,7 @@ public class CommentPath {
             value = value * charsetLength + CHARSET.indexOf(ch);
         }
 
-        value = value + 1;
+        value += 1;
 
         String result = "";
         for (int i=0; i < DEPTH_CHUNK_SIZE; i++) {
