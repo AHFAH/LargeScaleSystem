@@ -52,7 +52,7 @@ public class ArticleService {
     public void delete(Long articleId) {
         Article article = articleRepository.findById(articleId).orElseThrow();
         articleRepository.delete(article);
-        boardArticleCountRepository.decrease(article.getArticleId());
+        boardArticleCountRepository.decrease(article.getBoardId());
     }
 
 
