@@ -1,6 +1,6 @@
 package spring.board.comment.service;
 
-import kuke.board.common.snowflake.Snowflake;
+import spring.board.common.snowflake.Snowflake;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

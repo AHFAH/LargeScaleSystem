@@ -2,12 +2,11 @@ package spring.board.comment.data;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import kuke.board.common.snowflake.Snowflake;
+import spring.board.common.snowflake.Snowflake;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.support.TransactionTemplate;
-import spring.board.comment.entity.Comment;
 import spring.board.comment.entity.CommentPath;
 import spring.board.comment.entity.CommentV2;
 

@@ -2,7 +2,7 @@ package spring.board.article.service;
 
 
 import jakarta.transaction.Transactional;
-import kuke.board.common.snowflake.Snowflake;
+import spring.board.common.snowflake.Snowflake;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import spring.board.article.entity.Article;
