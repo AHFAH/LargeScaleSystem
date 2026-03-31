@@ -2,7 +2,7 @@ package spring.board.view.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import spring.board.view.entity.ArticleViewTest;
+import spring.board.view.entity.ArticleViewCount;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +22,7 @@ class ArticleViewCountBackUpRepositoryTest {
     void updateViewCountTest() {
 
         articleViewCountBackUpRepository.save(
-                ArticleViewTest.init(1L, 0L)
+                ArticleViewCount.init(1L, 0L)
         );
         entityManager.flush();
         entityManager.clear();
@@ -37,7 +37,7 @@ class ArticleViewCountBackUpRepositoryTest {
         assertThat(result2).isEqualTo(1);
         assertThat(result3).isEqualTo(0);
 
-        ArticleViewTest articleViewCount = articleViewCountBackUpRepository.findById(1L).get();
+        ArticleViewCount articleViewCount = articleViewCountBackUpRepository.findById(1L).get();
         assertThat(articleViewCount.getViewCount()).isEqualTo(300L);
     }
 }

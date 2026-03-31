@@ -14,14 +14,14 @@ import lombok.ToString;
 @Entity
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ArticleViewTest {
+public class ArticleViewCount {
 
     @Id
     private Long articleId;
     private Long viewCount;
 
-    public static ArticleViewTest init(Long articleId, Long viewCount) {
-        ArticleViewTest articleVIewCount = new ArticleViewTest();
+    public static ArticleViewCount init(Long articleId, Long viewCount) {
+        ArticleViewCount articleVIewCount = new ArticleViewCount();
         articleVIewCount.articleId = articleId;
         articleVIewCount.viewCount = viewCount;
         return articleVIewCount;

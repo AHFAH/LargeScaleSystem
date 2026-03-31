@@ -5,10 +5,10 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import spring.board.view.entity.ArticleViewTest;
+import spring.board.view.entity.ArticleViewCount;
 
 @Repository
-public interface ArticleViewCountBackUpRepository extends JpaRepository<ArticleViewTest, Long> {
+public interface ArticleViewCountBackUpRepository extends JpaRepository<ArticleViewCount, Long> {
 
     @Query(
             value = "update article_view_count set view_count = :viewCount " +
