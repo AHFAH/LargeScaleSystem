@@ -8,7 +8,7 @@ import java.time.Duration;
 
 @Repository
 @RequiredArgsConstructor
-public class ArticleLIkeCountRepository {
+public class ArticleLikeCountRepository {
     private final StringRedisTemplate redisTemplate;
 
     private static final String KEY_FORMAT = "hot-article::article::%s::like-count";
