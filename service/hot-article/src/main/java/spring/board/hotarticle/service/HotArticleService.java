@@ -9,8 +9,10 @@ import spring.board.common.event.EventType;
 import spring.board.hotarticle.client.ArticleClient;
 import spring.board.hotarticle.repository.HotArticleListRepository;
 import spring.board.hotarticle.service.eventHandler.EventHandler;
+import spring.board.hotarticle.service.response.HotArticleResponse;
 
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -46,4 +48,12 @@ public class HotArticleService {
         return EventType.ARTICLE_CREATED == event.getType() || EventType.ARTICLE_DELETED == event.getType();
     }
 
+
+    public List<HotArticleResponse> readAll(String dateStr) {
+        return hotArticleListRepository.readAll(dateStr).stream()
+                .map(articleClient::read)
+                .filter(Objects::nonNull)
+                .map(HotArticleResponse::from)
+                .toList();
+    }
 }
