@@ -29,7 +29,7 @@ class ViewClientTest {
     void readCacheableMultiThreadTest() throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-        viewClient.count(1L); // init cache
+        viewClient.count(1L); // 초기화 캐시
 
         for(int i=0;i <5; i++) {
             CountDownLatch latch = new CountDownLatch(5);
